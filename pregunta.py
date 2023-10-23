@@ -11,11 +11,17 @@ espacio entre palabra y palabra.
 """
 import pandas as pd
 
-
 def ingest_data():
+    with open('clusters_report.txt', 'r') as file:
+        data = file.readlines()
 
-    #
-    # Inserte su código aquí
-    #
+    processed_data = []
+    for line in data:
+        line = line.strip()
+        line = line.lower().replace(' ', '_')
+        line = ', '.join(line.split(','))
+        processed_data.append(line)
+
+    df = pd.DataFrame(processed_data, columns=['nombres_de_columnas'])
 
     return df
